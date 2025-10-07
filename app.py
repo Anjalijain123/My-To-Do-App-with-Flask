@@ -8,6 +8,9 @@ init_db()
 def row_to_dict(row):
     return {"id": row["id"], "title": row["title"], "done": bool(row["done"])}
 
+@app.route("/", methods = ["GET"])
+def index():
+    return app.send_static_file("index.html")
 @app.route("/tasks", methods=["GET"])
 def list_tasks():
     with get_conn() as conn:
